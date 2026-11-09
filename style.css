@@ -1,0 +1,50 @@
+/* Підключення шрифтів Inter та Space Grotesk */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+/* Колірні дизайн-токени NexPC */
+:root {
+    --bg-main: #0B0F1A;       /* Глибокий темно-синій фон */
+    --accent-primary: #2F6BFF;  /* Електричний синій */
+    --accent-secondary: #7C3AED;/* Фіолетовий */
+    --highlight: #22D3EE;       /* Блакитний */
+    --text-light: #F5F7FA;      /* Світлий текст */
+}
+
+/* Базові стилі */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-light);
+}
+
+.font-heading {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Плавне прокручування */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Приховування стандартного ползунка для каруселей */
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Стилізація кастомних полів */
+input[type="checkbox"] {
+    accent-color: var(--accent-primary);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
