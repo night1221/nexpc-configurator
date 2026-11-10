@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Каталог комплектуючих | NexPC</title>
+    <link rel="icon" type="image/svg+xml" href="images/samui_krytui_logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-[#0B0F1A] text-[#F5F7FA] font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Закріплена Шапка сайту (Sticky Header) -->
+    <header class="sticky top-0 z-50 bg-[#0B0F1A]/95 backdrop-blur-md border-b border-[#2F6BFF]/20">
+        <div class="container mx-auto flex items-center justify-between px-6 py-4">
+            <a href="../index.html" class="logo flex items-center gap-3">
+                <img src="../images/samui_krytui_logo.svg" alt="NexPC Logo" class="w-8 h-8">
+                <h1 class="text-2xl font-bold tracking-wide text-[#F5F7FA] font-heading">NexPC</h1>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm">
+                <a href="../index.html" class="hover:text-[#2F6BFF] transition-colors">Головна</a>
+                <a href="catalog.html" class="text-[#2F6BFF] font-semibold border-b-2 border-[#2F6BFF] pb-1">Каталог</a>
+                <a href="../index.html#prebuilt" class="hover:text-[#2F6BFF] transition-colors">Готові збірки</a>
+                <a href="about.html" class="hover:text-[#2F6BFF] transition-colors">Про нас</a>
+                <a href="blog.html" class="hover:text-[#2F6BFF] transition-colors">Блог</a>
+                <a href="contacts.html" class="hover:text-[#2F6BFF] transition-colors">Контакти</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="configurator.html" class="hidden md:inline-block bg-[#2F6BFF] text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-[#7C3AED] transition-colors shadow-lg shadow-[#2F6BFF]/20">
+                    Зібрати ПК
+                </a>
+                <button class="md:hidden text-[#F5F7FA] text-2xl">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основний контент -->
+    <main class="container mx-auto px-6 py-8 flex-grow">
+        
+        <!-- Заголовок та швидкий пошук -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl font-bold font-heading text-[#F5F7FA]">Каталог комплектуючих</h1>
+                <p class="text-[#F5F7FA]/60 text-sm mt-1">Обирайте перевірені деталі із гарантією сумісності</p>
+            </div>
+            
+            <!-- Пошукова стрічка -->
+            <div class="relative w-full md:w-80">
+                <input type="text" placeholder="Пошук деталі (напр. Ryzen 5)..." 
+                       class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 pl-10 text-sm text-[#F5F7FA] focus:outline-none focus:border-[#2F6BFF] transition-colors">
+                <svg class="w-4 h-4 text-[#F5F7FA]/40 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Перемикач категорій (Активна за замовчуванням: CPU) -->
+        <div class="flex gap-3 overflow-x-auto pb-4 mb-8 scrollbar-none" id="category-tabs">
+            <button data-category="cpu" class="tab-btn px-5 py-2 rounded-xl bg-[#2F6BFF] text-white font-medium text-sm whitespace-nowrap shadow-md shadow-[#2F6BFF]/20 transition-all">Процесори (CPU)</button>
+            <button data-category="gpu" class="tab-btn px-5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-[#F5F7FA]/80 hover:text-white font-medium text-sm whitespace-nowrap border border-white/5 transition-all">Відеокарти (GPU)</button>
+            <button data-category="mb" class="tab-btn px-5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-[#F5F7FA]/80 hover:text-white font-medium text-sm whitespace-nowrap border border-white/5 transition-all">Материнські плати</button>
+            <button data-category="ram" class="tab-btn px-5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-[#F5F7FA]/80 hover:text-white font-medium text-sm whitespace-nowrap border border-white/5 transition-all">Оперативна пам'ять</button>
+            <button data-category="psu" class="tab-btn px-5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-[#F5F7FA]/80 hover:text-white font-medium text-sm whitespace-nowrap border border-white/5 transition-all">Блоки живлення</button>
+        </div>
+
+        <!-- Основна сітка: Адаптивні фільтри ліворуч + Товари праворуч -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- Бічна панель фільтрів (Sidebar) -->
+            <aside class="bg-white/5 border border-white/10 rounded-2xl p-6 h-fit space-y-6">
+                <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                    <h3 class="font-bold font-heading text-lg text-[#F5F7FA]">Фільтри</h3>
+                    <button class="text-xs text-[#22D3EE] hover:underline">Скинути все</button>
+                </div>
+
+                <!-- Загальний фільтр: Ціна -->
+                <div>
+                    <label class="block text-sm font-semibold text-[#F5F7FA] mb-3">Ціна (грн)</label>
+                    <div class="flex items-center gap-2 mb-3">
+                        <input type="number" placeholder="Від 2 000" class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-[#F5F7FA] focus:outline-none focus:border-[#2F6BFF]">
+                        <span class="text-[#F5F7FA]/40">-</span>
+                        <input type="number" placeholder="До 90 000" class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-[#F5F7FA] focus:outline-none focus:border-[#2F6BFF]">
+                    </div>
+                </div>
+
+                <!-- Специфічні фільтри для CPU -->
+                <div data-category="cpu" class="category-filter-group space-y-4 pt-4 border-t border-white/10">
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Виробник CPU</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" checked class="rounded accent-[#2F6BFF]"> AMD
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" checked class="rounded accent-[#2F6BFF]"> Intel
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Сокет</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> AM4
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> AM5
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> LGA1700
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Специфічні фільтри для GPU (приховані за замовчуванням) -->
+                <div data-category="gpu" class="category-filter-group space-y-4 pt-4 border-t border-white/10 hidden">
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Виробник GPU</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" checked class="rounded accent-[#2F6BFF]"> NVIDIA
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> AMD Radeon
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Об'єм відеопам'яті</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> 8 GB
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> 12 GB
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> 16 GB+
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Специфічні фільтри для Материнських плат -->
+                <div data-category="mb" class="category-filter-group space-y-4 pt-4 border-t border-white/10 hidden">
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Форм-фактор</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> ATX
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> Micro-ATX
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Тип оперативної пам'яті</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> DDR4
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> DDR5
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Специфічні фільтри для ОЗП (RAM) -->
+                <div data-category="ram" class="category-filter-group space-y-4 pt-4 border-t border-white/10 hidden">
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Тип пам'яті</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> DDR4
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> DDR5
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Загальний об'єм</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> 16 GB (2x8)
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> 32 GB (2x16)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Специфічні фільтри для БЖ (PSU) -->
+                <div data-category="psu" class="category-filter-group space-y-4 pt-4 border-t border-white/10 hidden">
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Потужність</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> 500W – 650W
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> 700W – 850W
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[#F5F7FA] mb-2">Сертифікат 80 PLUS</label>
+                        <div class="space-y-2 text-sm text-[#F5F7FA]/80">
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> Bronze
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                <input type="checkbox" class="rounded accent-[#2F6BFF]"> Gold
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Загальний фільтр: Наявність -->
+                <div class="pt-4 border-t border-white/10">
+                    <label class="flex items-center gap-2 cursor-pointer text-sm text-[#F5F7FA]/80 hover:text-white">
+                        <input type="checkbox" class="rounded accent-[#22D3EE]"> Тільки в наявності
+                    </label>
+                </div>
+
+                <button class="w-full bg-[#2F6BFF] hover:bg-[#7C3AED] text-white font-medium py-2.5 rounded-xl transition-colors text-sm shadow-md shadow-[#2F6BFF]/20">
+                    Застосувати
+                </button>
+            </aside>
+
+            <!-- Каталог товарів -->
+            <div class="lg:col-span-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6" id="product-grid">
+                    
+                    <!-- Товар: CPU (Видимий) -->
+                    <article data-category="cpu" class="product-card bg-white/5 rounded-2xl p-5 border border-white/5 hover:border-[#2F6BFF]/50 transition-all hover:shadow-xl hover:shadow-[#2F6BFF]/10 flex flex-col justify-between group">
+                        <div>
+                            <div class="aspect-video bg-white/5 rounded-xl mb-4 overflow-hidden flex items-center justify-center p-4 group-hover:scale-105 transition-transform">
+                                <img src="../images/kolo.svg" alt="AMD Ryzen 5 5600" class="w-16 h-16 opacity-80">
+                            </div>
+                            <span class="text-xs text-[#22D3EE] font-medium uppercase tracking-wider">Процесори</span>
+                            <h3 class="text-lg font-bold text-[#F5F7FA] mt-1 mb-2">AMD Ryzen 5 5600</h3>
+                            <ul class="text-xs text-[#F5F7FA]/60 space-y-1 mb-4">
+                                <li>• 6 ядер / 12 потоків</li>
+                                <li>• Тактова частота: 3.5–4.4 ГГц</li>
+                                <li>• Сокет: AM4 | TDP: 65W</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-[#F5F7FA]/40 block">Ціна</span>
+                                <span class="text-xl font-bold text-[#F5F7FA]">7 130 ₴</span>
+                            </div>
+                            <button class="bg-[#2F6BFF] hover:bg-[#7C3AED] text-white p-2.5 rounded-xl transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Товар: GPU (Прихований за замовчуванням) -->
+                    <article data-category="gpu" class="product-card bg-white/5 rounded-2xl p-5 border border-white/5 hover:border-[#2F6BFF]/50 transition-all hover:shadow-xl hover:shadow-[#2F6BFF]/10 flex flex-col justify-between group hidden">
+                        <div>
+                            <div class="aspect-video bg-white/5 rounded-xl mb-4 overflow-hidden flex items-center justify-center p-4 group-hover:scale-105 transition-transform">
+                                <img src="../images/kolo.svg" alt="NVIDIA RTX 4060" class="w-16 h-16 opacity-80">
+                            </div>
+                            <span class="text-xs text-[#22D3EE] font-medium uppercase tracking-wider">Відеокарти</span>
+                            <h3 class="text-lg font-bold text-[#F5F7FA] mt-1 mb-2">NVIDIA RTX 4060 8GB</h3>
+                            <ul class="text-xs text-[#F5F7FA]/60 space-y-1 mb-4">
+                                <li>• 8GB GDDR6 (128-bit)</li>
+                                <li>• 3072 CUDA ядер</li>
+                                <li>• PCIe 4.0 | TDP: 115W</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-[#F5F7FA]/40 block">Ціна</span>
+                                <span class="text-xl font-bold text-[#F5F7FA]">18 900 ₴</span>
+                            </div>
+                            <button class="bg-[#2F6BFF] hover:bg-[#7C3AED] text-white p-2.5 rounded-xl transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Товар: MB (Прихований за замовчуванням) -->
+                    <article data-category="mb" class="product-card bg-white/5 rounded-2xl p-5 border border-white/5 hover:border-[#2F6BFF]/50 transition-all hover:shadow-xl hover:shadow-[#2F6BFF]/10 flex flex-col justify-between group hidden">
+                        <div>
+                            <div class="aspect-video bg-white/5 rounded-xl mb-4 overflow-hidden flex items-center justify-center p-4 group-hover:scale-105 transition-transform">
+                                <img src="../images/kolo.svg" alt="ASUS B550M-K" class="w-16 h-16 opacity-80">
+                            </div>
+                            <span class="text-xs text-[#22D3EE] font-medium uppercase tracking-wider">Материнські плати</span>
+                            <h3 class="text-lg font-bold text-[#F5F7FA] mt-1 mb-2">ASUS B550M-K (AM4)</h3>
+                            <ul class="text-xs text-[#F5F7FA]/60 space-y-1 mb-4">
+                                <li>• Чипсет: AMD B550</li>
+                                <li>• Форм-фактор: Micro-ATX</li>
+                                <li>• 4x DDR4 слоти</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-[#F5F7FA]/40 block">Ціна</span>
+                                <span class="text-xl font-bold text-[#F5F7FA]">3 400 ₴</span>
+                            </div>
+                            <button class="bg-[#2F6BFF] hover:bg-[#7C3AED] text-white p-2.5 rounded-xl transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Товар: RAM (Прихований за замовчуванням) -->
+                    <article data-category="ram" class="product-card bg-white/5 rounded-2xl p-5 border border-white/5 hover:border-[#2F6BFF]/50 transition-all hover:shadow-xl hover:shadow-[#2F6BFF]/10 flex flex-col justify-between group hidden">
+                        <div>
+                            <div class="aspect-video bg-white/5 rounded-xl mb-4 overflow-hidden flex items-center justify-center p-4 group-hover:scale-105 transition-transform">
+                                <img src="../images/kolo.svg" alt="DDR4 32GB" class="w-16 h-16 opacity-80">
+                            </div>
+                            <span class="text-xs text-[#22D3EE] font-medium uppercase tracking-wider">Оперативна пам'ять</span>
+                            <h3 class="text-lg font-bold text-[#F5F7FA] mt-1 mb-2">DDR4 32GB 3200 MHz</h3>
+                            <ul class="text-xs text-[#F5F7FA]/60 space-y-1 mb-4">
+                                <li>• Об'єм: 2×16GB</li>
+                                <li>• Частота: 3200 MHz</li>
+                                <li>• Таймінги: CL16</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-[#F5F7FA]/40 block">Ціна</span>
+                                <span class="text-xl font-bold text-[#F5F7FA]">2 800 ₴</span>
+                            </div>
+                            <button class="bg-[#2F6BFF] hover:bg-[#7C3AED] text-white p-2.5 rounded-xl transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Товар: PSU (Прихований за замовчуванням) -->
+                    <article data-category="psu" class="product-card bg-white/5 rounded-2xl p-5 border border-white/5 hover:border-[#2F6BFF]/50 transition-all hover:shadow-xl hover:shadow-[#2F6BFF]/10 flex flex-col justify-between group hidden">
+                        <div>
+                            <div class="aspect-video bg-white/5 rounded-xl mb-4 overflow-hidden flex items-center justify-center p-4 group-hover:scale-105 transition-transform">
+                                <img src="../images/kolo.svg" alt="DeepCool 650W" class="w-16 h-16 opacity-80">
+                            </div>
+                            <span class="text-xs text-[#22D3EE] font-medium uppercase tracking-wider">Блоки живлення</span>
+                            <h3 class="text-lg font-bold text-[#F5F7FA] mt-1 mb-2">DeepCool 650W 80+ Bronze</h3>
+                            <ul class="text-xs text-[#F5F7FA]/60 space-y-1 mb-4">
+                                <li>• Потужність: 650 Вт</li>
+                                <li>• Сертифікат: 80 PLUS Bronze</li>
+                                <li>• Захист: OVP, UVP, SCP, OPP</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-[#F5F7FA]/40 block">Ціна</span>
+                                <span class="text-xl font-bold text-[#F5F7FA]">2 450 ₴</span>
+                            </div>
+                            <button class="bg-[#2F6BFF] hover:bg-[#7C3AED] text-white p-2.5 rounded-xl transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Підвал (Footer) -->
+    <footer class="bg-[#0B0F1A] text-[#F5F7FA] border-t border-[#2F6BFF]/20 mt-16">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 px-6 py-12">
+            <div>
+                <a href="../index.html" class="logo flex items-center gap-2 mb-3">
+                    <img src="../images/samui_krytui_logo.svg" alt="NexPC Logo" class="w-6 h-6">
+                    <span class="text-xl font-bold font-heading text-[#F5F7FA]">NexPC</span>
+                </a>
+                <p class="text-sm text-[#F5F7FA]/70">Збираємо найкращі ПК для геймерів та професіоналів. Автоматична перевірка сумісності.</p>
+            </div>
+            <div>
+                <p class="font-semibold mb-3">Каталог</p>
+                <ul class="space-y-2 text-sm text-[#F5F7FA]/70">
+                    <li><a href="catalog.html" class="hover:text-[#22D3EE] transition-colors">Комплектуючі</a></li>
+                    <li><a href="../index.html#prebuilt" class="hover:text-[#22D3EE] transition-colors">Готові збірки</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-3">Інформація</p>
+                <ul class="space-y-2 text-sm text-[#F5F7FA]/70">
+                    <li><a href="about.html" class="hover:text-[#22D3EE] transition-colors">Про нас</a></li>
+                    <li><a href="contacts.html" class="hover:text-[#22D3EE] transition-colors">Контакти</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-3">Підтримка</p>
+                <p class="text-sm text-[#F5F7FA]/70">+38 000 000 00 00</p>
+                <p class="text-sm text-[#F5F7FA]/70">info@nexpc.ua</p>
+            </div>
+        </div>
+        <div class="border-t border-white/5 py-4 text-center text-xs text-[#F5F7FA]/50">
+            © 2026 NexPC. Усі права захищено.
+        </div>
+    </footer>
+
+    <!-- Скрипт синхронного перемикання товарів і бокових фільтрів -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.tab-btn');
+        const products = document.querySelectorAll('.product-card');
+        const filterGroups = document.querySelectorAll('.category-filter-group');
+
+        const activeClasses = ['bg-[#2F6BFF]', 'text-white', 'shadow-md', 'shadow-[#2F6BFF]/20'];
+        const inactiveClasses = ['bg-white/5', 'hover:bg-white/10', 'text-[#F5F7FA]/80', 'border', 'border-white/5'];
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetCategory = tab.getAttribute('data-category');
+
+                // 1. Оновлення стилів табів
+                tabs.forEach(t => {
+                    t.classList.remove(...activeClasses);
+                    t.classList.add(...inactiveClasses);
+                });
+                tab.classList.remove(...inactiveClasses);
+                tab.classList.add(...activeClasses);
+
+                // 2. Фільтрація товарів у сітці
+                products.forEach(card => {
+                    if (card.getAttribute('data-category') === targetCategory) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // 3. Перемикання відповідних фільтрів у боковій панелі
+                filterGroups.forEach(group => {
+                    if (group.getAttribute('data-category') === targetCategory) {
+                        group.classList.remove('hidden');
+                    } else {
+                        group.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    });
+    </script>
+</body>
+</html>

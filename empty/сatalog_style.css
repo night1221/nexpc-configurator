@@ -1,0 +1,51 @@
+/* 1. Підключення фірмових шрифтів Inter та Space Grotesk */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+/* 2. Дизайн-токени (CSS-змінні проєкту NexPC) */
+:root {
+    --bg-main: #0B0F1A;          /* Глибокий темно-синій фон */
+    --accent-primary: #2F6BFF;   /* Електричний синій */
+    --accent-secondary: #7C3AED; /* Фіолетовий */
+    --highlight: #22D3EE;        /* Блакитна підсвітка */
+    --text-light: #F5F7FA;       /* Основний світлий текст */
+}
+
+/* 3. Базові налаштування сторінки */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-light);
+}
+
+/* Заголовки та акцентний текст */
+.font-heading {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* 4. Приховування смуги прокрутки для горизонтального списку категорій-табів */
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-none {
+    -ms-overflow-style: none;  /* IE та Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* 5. Стилізація елементів форми (чекбокси та числові поля) */
+input[type="checkbox"] {
+    accent-color: var(--accent-primary);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* 6. Плавна прокрутка для всієї сторінки */
+html {
+    scroll-behavior: smooth;
+}
