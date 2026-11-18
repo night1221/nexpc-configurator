@@ -14,15 +14,14 @@
     <header class="sticky top-0 z-50 bg-[#0B0F1A]/95 backdrop-blur-md border-b border-[#2F6BFF]/20">
         <div class="container mx-auto flex items-center justify-between px-6 py-4">
             <a href="../index.html" class="logo flex items-center gap-3">
-                <img src="../images/samui_krytui_logo.svg" alt="NexPC Logo" class="w-8 h-8">
-                <h1 class="text-2xl font-bold tracking-wide text-[#F5F7FA] font-heading">NexPC</h1>
+                <img src="../images/samui_krytui_logo.svg" alt="NexPC Logo" class="w-11 h-11">
+                <h1 class="text-4xl font-bold tracking-wide text-[#F5F7FA] font-heading">NexPC</h1>
             </a>
             <nav class="hidden md:flex items-center gap-8 text-sm">
                 <a href="../index.html" class="hover:text-[#2F6BFF] transition-colors">Головна</a>
                 <a href="catalog.html" class="text-[#2F6BFF] font-semibold border-b-2 border-[#2F6BFF] pb-1">Каталог</a>
                 <a href="../index.html#prebuilt" class="hover:text-[#2F6BFF] transition-colors">Готові збірки</a>
                 <a href="about.html" class="hover:text-[#2F6BFF] transition-colors">Про нас</a>
-                <a href="blog.html" class="hover:text-[#2F6BFF] transition-colors">Блог</a>
                 <a href="contacts.html" class="hover:text-[#2F6BFF] transition-colors">Контакти</a>
             </nav>
             <div class="flex items-center gap-4">
@@ -56,6 +55,7 @@
 
         <!-- Перемикач категорій (Активна за замовчуванням: CPU) -->
         <div class="flex gap-3 overflow-x-auto pb-4 mb-8 scrollbar-none" id="category-tabs">
+            <a href="../index.html#prebuilt" class="px-5 py-2 rounded-xl bg-[#7C3AED] text-white font-medium text-sm whitespace-nowrap shadow-md shadow-[#7C3AED]/20 transition-all hover:bg-[#6D28D9]">Готові збірки</a>
             <button data-category="cpu" class="tab-btn px-5 py-2 rounded-xl bg-[#2F6BFF] text-white font-medium text-sm whitespace-nowrap shadow-md shadow-[#2F6BFF]/20 transition-all">Процесори (CPU)</button>
             <button data-category="gpu" class="tab-btn px-5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-[#F5F7FA]/80 hover:text-white font-medium text-sm whitespace-nowrap border border-white/5 transition-all">Відеокарти (GPU)</button>
             <button data-category="mb" class="tab-btn px-5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-[#F5F7FA]/80 hover:text-white font-medium text-sm whitespace-nowrap border border-white/5 transition-all">Материнські плати</button>
