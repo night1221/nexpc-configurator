@@ -48,3 +48,186 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
+/* ===== Віджет зворотного зв'язку (правий нижній кут) ===== */
+.support-widget {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999;
+}
+
+.support-button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    box-shadow: 0 10px 25px rgba(47, 107, 255, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.support-button img {
+    width: 28px;
+    height: 28px;
+}
+
+.support-widget:hover .support-button {
+    transform: scale(1.1) rotate(6deg);
+    box-shadow: 0 12px 30px rgba(124, 58, 237, 0.5);
+}
+
+/* Віконце: сховане, поки не навели мишку */
+.support-panel {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    padding-bottom: 14px; /* «місток», щоб віконце не зникало між кнопкою і ним */
+    width: 320px;
+    max-width: calc(100vw - 48px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.support-widget:hover .support-panel,
+.support-widget:focus-within .support-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.support-card {
+    background: #131B2E;
+    border: 1px solid rgba(47, 107, 255, 0.4);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.support-header {
+    padding: 12px 20px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+.support-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.support-header p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.support-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 20px;
+}
+
+.support-form label {
+    font-size: 12px;
+    color: rgba(245, 247, 250, 0.5);
+}
+
+.support-form input,
+.support-form textarea {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-light);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    outline: none;
+    resize: none;
+    transition: border-color 0.3s;
+}
+
+.support-form input::placeholder,
+.support-form textarea::placeholder {
+    color: rgba(245, 247, 250, 0.3);
+}
+
+.support-form input:focus,
+.support-form textarea:focus {
+    border-color: var(--accent-primary);
+}
+
+.support-form button {
+    margin-top: 4px;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent-primary);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.support-form button:hover {
+    background: var(--accent-secondary);
+    transform: scale(1.02);
+}
+
+.support-success {
+    display: none;
+    margin: 4px 0 0;
+    font-size: 12px;
+    text-align: center;
+    color: var(--highlight);
+}
+
+.support-success.show {
+    display: block;
+}
+
+.support-socials {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.support-socials span {
+    font-size: 12px;
+    color: rgba(245, 247, 250, 0.4);
+}
+
+.support-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.support-icons a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s;
+}
+
+.support-icons a:hover {
+    transform: scale(1.15) translateY(-2px);
+}
+
+.support-icons img {
+    width: 100%;
+    height: 100%;
+}
