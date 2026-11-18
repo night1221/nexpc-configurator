@@ -24,3 +24,17 @@ function toggleDropdown(dropdownId, element) {
         arrowSvg.classList.toggle('rotate-180');
     }
 }
+// Віджет зворотного зв'язку: обробка форми (демо без сервера)
+document.addEventListener('DOMContentLoaded', () => {
+    const supportForm = document.getElementById('support-form');
+    const supportSuccess = document.getElementById('support-success');
+
+    if (supportForm) {
+        supportForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            supportSuccess.classList.add('show');
+            supportForm.reset();
+            setTimeout(() => supportSuccess.classList.remove('show'), 4000);
+        });
+    }
+});
